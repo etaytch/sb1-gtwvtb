@@ -32,7 +32,7 @@ app.use(errorHandler);
 // Start server
 app.listen(config.port, () => {
   logger.info(`Server running on port ${config.port}`);
-  logger.info('Hello World 9');
+  logger.info('Hello World 1');
 });
 
 export default app;
