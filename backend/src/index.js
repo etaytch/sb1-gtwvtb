@@ -8,6 +8,8 @@ import receiptRoutes from './routes/receipt.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import { errorHandler } from './middleware/error.js';
 
+logger.info('Hello World');
+
 const app = express();
 
 // Security middleware
