@@ -31,6 +31,7 @@ app.use(errorHandler);
 
 // Start server
 app.listen(config.port, () => {
+  logger.info('Hello World!');
   logger.info(`Server running on port ${config.port}`);
 });
 
