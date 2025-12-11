@@ -3,12 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { MyReceipts } from './pages/MyReceipts';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { debug } from './utils/debug';
 
-// Development helper to log render cycles
+// Development helper to log render cycles with random messages
 const withDevTools = (WrappedComponent: React.ComponentType<any>) => {
   if (process.env.NODE_ENV === 'development') {
     return (props: any) => {
       console.log(`[Dev] Rendering ${WrappedComponent.name}`, { props });
+      debug.randomWithChance(0.2, WrappedComponent.name);
       return <WrappedComponent {...props} />;
     };
   }

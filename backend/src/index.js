@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { config } from './config/config.js';
-import logger from './utils/logger.js';
+import logger, { randomLog, randomLogWithChance } from './utils/logger.js';
 import receiptRoutes from './routes/receipt.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import { errorHandler } from './middleware/error.js';
@@ -29,9 +29,16 @@ app.use('/api/receipts', receiptRoutes);
 // Error handling
 app.use(errorHandler);
 
+// Random log middleware - occasionally logs fun messages on requests
+app.use((req, res, next) => {
+  randomLogWithChance(0.1, `${req.method} ${req.path}`);
+  next();
+});
+
 // Start server
 app.listen(config.port, () => {
   logger.info(`Server running on port ${config.port}`);
+  randomLog('Server Startup');
 });
 
 export default app;
